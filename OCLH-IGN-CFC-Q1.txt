@@ -1,0 +1,55 @@
+1) How many pennies could you put on the Golden Gate Bridge without any of them overlapping? For this question, please write out each step in your thought process.
+
+A. Basic Calculation (Done)
+A.1. Obtain the diameter of a penny.
+A.2. Obtain the surface dimensions of each of the Golden Gate Bridge horizontal surfaces.
+A.3. Calculate how many pennies fit onto each surface separately
+A.4. Sum up the total for each surface.
+
+B. Considerations : simple (Done)
+Premise: Pennies fit into the surface area in a simple box calculation. Each penny is assumed to be in a boxed shape.
+Modifies: A.3
+B.1. Divide each side of a surface by the penny's diameter.
+B.2. Multiply the results from B.1 to get the number of pennies.
+
+/* ------scrapped--------
+C. Considerations : complex placement
+Premise: Pennies might fit better if they are not perfectly lined up. This part attempts to calculate the placement of 5 pennies into a rectangular shape.
+-Each corner of the rectangle will hold a quarter of a penny.
+-Each side of the rectangle will hold half a penny.
+-There will be one penny in the center.
+So each rectangle will hold four pennies in total. (not factoring in external partial pennies.)
+Modifies: A.3
+C.1. Remove one penny diameter from both the length and width of the surface dimension.
+C.2. Calculate the distance of the diagonal [squareroot of (length^2 + width^2)]
+C.3. Find the closest multiple of two times the diameter of a penny that is less than C.2
+#scraped, there is only one more compact placement than B that would even be necessary to calculate. Also this method fails to calculate for two lines of pennies that are compacted against each other. calculating the diagonal also assumes an overall square formation which does not have to be the case.
+---------*/
+
+C. Considerations : complex placement (Done)
+Premise: Pennies are placed more compacted if they are not lined up at a 90 degree angle to each other. This part attempts to calculate the placement of 2 pennies into a rectangular shape with one penny at each corner opposite to each other. Note that this rectangle has a side of exactly 1 penny's radius and a diagonal of exactly 2 penny's radius.
+Modifies: A.3
+C.1. Remove one penny's diameter from both the length and width of the surface dimension.
+C.2. Divide the length by 1 penny's radius, divide the width by the (squareroot of 3 times 1 penny's radius). Using only the interger value from the divisions, multiply these together to get the number of squares.
+C.3. Divide the width by 1 penny's radius, divide the length by the (squareroot of 3 times 1 penny's radius). Using only the interger value from the divisions, multiply these together to get the number of squares.
+C.4. The larger of C.2 and C.3 is the optimal placement and will be used in further calculations.
+C.5. Each rectangle counts as placing half a penny down. [1/4 from each penny]
+C.6. Each perimeter rectangle counts as placing 1/4 of a penny for each width and another for each length.
+C.7. Another half a penny is added for the entire structure [1/4 from each penny on each side]
+
+Thoughts: While the placement of the pennies in a non perpendicular manner is possible in various degrees, the other placements would only more entirely fill the surface area rather than finding the most possible pennies. Therefore it will fall between the calculation from B or C.
+
+D. Considerations : hanging pennies (Done)
+Premise: Pennies do not have to all fit into the exact surface area. That is, some of them can be overhanging without falling off.
+Modifies: A.2
+D.1. Obtain data on how much of the penny has to be on the surface in order for it to stay on the surface.
+D.2. The surface dimensions input will have to indicate which sides are considered walled, where no pennies can be hanging.
+D.3. The surface dimensions will be expanded by the amount indicated from D.1, but only on the sides that are not walled.
+
+E. Considerations : diagonal surfaces (Done)
+Premise: Diagonal surfaces can be used. A penny on a diagonal surface that touches a penny on a horizontal surface does not count as overlapping. This consideration also assumes that the pennies can be stacked onto the surface without falling off.
+Modifies: A.2
+E.1. Obtain diagonal surface dimensions.
+E.2. calculate how much extra space is needed for pennies that intersect from both surfaces.
+E.3. Modify the surface dimensions to reflect the extra space needed.
+

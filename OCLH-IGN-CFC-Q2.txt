@@ -1,0 +1,4 @@
+2) Our images have a ratio of 16:9, and our design layouts have 12 pixel wide increments (there are no limits on height). Give examples of three image sizes that would have the correct ratio and would fit the design layout.
+
+Smallest image size in whole pixel increments would be 192x108 any other image size would be a multiple of this size.
+1152x648, or 1920x1080 could also be used.

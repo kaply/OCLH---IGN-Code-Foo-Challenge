@@ -1,0 +1,216 @@
+/* 3) What is the minimum number of moves required for a knight to cover the entire chess board? Write a program to prove it. Provide a graph with the move number on the x axis and the number of squares covered on the y axis. 
+
+This version is currently written in a generic language similar to c++/java
+*/
+
+main()
+/* It should be possible for a knight to start from one position and traverse the entire board without overlapping. This program is written to reflect this possibility, the data structures reflect this useage as well
+
+initialize an array of 1x64 integers /* each will hold the move number for the knight and will correspond to the board location with a1 being position 1 and b1 being position 9, etc*/ : Board;
+initialize an integer /* this will hold the current location*/ : Location;
+initialize an integer /* this will hold the current move number*/ : MoveNumber;
+
+
+set Board values to 0; /* 0 is used to indicate that the position was not previously used*/
+set Location to 9; /* standard knight position at b1 */
+set MoveNumber to 1;
+if function knightAllOver(Board,Location,MoveNumber)
+
+displayBoard(Board);
+
+return()
+}
+
+
+function knightAllOver(array Board,int Location, int MoveNumber)
+/* this function needs to be able to directly modify the variables
+   this function returns a value of 1 if MoveNumber reaches 64 which indicates that it has traversed the entire board */
+
+/* IMPORTANT: assumes the language treats the <mod> function as returning an integer remainder in a non negative manner */
+/* IMPORTANT: assumes the language treats the <div> function as returning an integer quotient in a non negative manner */
+{
+
+If MoveNumber == 64 then
+ return 1;
+
+/* test move 2 up 1 left/right possible */
+/* test move 2 up first */
+if Location mod 8 < 7 then 
+{
+ /* test move 1 left possible */
+ if Location div 8 > 0 then
+ /* 2 up 1 left is possible, mark that position and call the function again passing on the new location */
+ {
+  /* new location becomes +2-8 */
+  Location = Location - 6;
+  MoveNumber++;
+  Board[Location] = MoveNumber;
+  if knightAllOver(Board,Location,MoveNumber) == 0 then
+  /* did not find a path, need to undo the move */
+  {
+   MoveNumber--;
+   Board[Location] = 0;
+   Location = Location + 6;
+  } else
+  /* path found, might not be necessary?*/
+  return 1;
+ }/* closes   if LOcation div 8 > 0 then */
+ /* test move 1 right possible */
+ else if Location div 8 < 7 then 
+ /* 2 up 1 right possible */
+ {
+  /* new location becomes +2+8 */
+  Location = Location + 10;
+  MoveNumber++;
+  Board[Location] = MoveNumber;
+  if knightAllOver(Board,Location,MoveNumber) == 0 then
+  /* did not find a path, need to undo the move */
+  {
+   MoveNumber--;
+   Board[Location] = MoveNumber;
+   Location = Location - 10; 
+  } else
+  /* path found */
+  return 1;
+ }/* closes else if Location div 8 < 7 then */
+}/* closes if Location mod 8 < 7 then 
+
+/* test move 2 right 1 up/down possible */
+/* test move 2 right possible */
+if Location div 8 < 6 then
+{
+ /* test move 1 up possible */
+ if Location mod 8 < 7 then
+ /* 2 right 1 up possible, mark that position and call the function again passing on the new location */
+ {
+  /* new location becomes 8+8+1 */
+  Location = Location + 17;
+  MoveNumber++;
+  Board[Location] = MoveNumber;
+  if knightAllOver(Board,Location,MoveNumber) == 0 then
+  /* did not find a path, need to undo the move */
+  {
+   MoveNumber--;
+   Board[Location] = 0;
+   Location = Location - 17;
+  } else
+  /* path found */
+  return 1;
+ }/* closes if Location mod 8 < 7 then */
+ /* test move 1 down is possible */
+ else if Location mod 8 > 0
+ /* 2 right 1 down is possible */
+ {
+  /* new location becomes 8+8-1 */
+  Location = Location +15;
+  MoveNumber++;
+  Board[Location] = MoveNumber;
+  if knightAllOver(Board,Location,MoveNumber) == 0 then
+  /* did not find a path, need to undo the move */
+  {
+   MoveNumber--;
+   Board[Location] = MoveNumber;
+   Location = Location - 15;
+  } else
+  /* path found */
+  return 1;
+ } /* closes else if Location mod 8 > 0 */
+}/* closes if Location div 8 < 6 then */
+
+/* test move 2 down 1 left/right possible */
+/* test move 2 down first */
+if Location mod 8 > 1 then 
+{
+ /* test move 1 left possible */
+ if Location div 8 > 0 then
+ /* 2 down 1 left is possible, mark that position and call the function again passing on the new location */
+ {
+  /* new location becomes -2-8 */
+  Location = Location - 10;
+  MoveNumber++;
+  Board[Location] = MoveNumber;
+  if knightAllOver(Board,Location,MoveNumber) == 0 then
+  /* did not find a path, need to undo the move */
+  {
+   MoveNumber--;
+   Board[Location] = 0;
+   Location = Location + 10;
+  } else
+  /* path found, might not be necessary?*/
+  return 1;
+ }/* closes   if LOcation div 8 > 0 then */
+ /* test move 1 right possible */
+ else if Location div 8 < 7 then 
+ /* 2 up 1 right possible */
+ {
+  /* new location becomes -2+8 */
+  Location = Location + 6;
+  MoveNumber++;
+  Board[Location] = MoveNumber;
+  if knightAllOver(Board,Location,MoveNumber) == 0 then
+  /* did not find a path, need to undo the move */
+  {
+   MoveNumber--;
+   Board[Location] = MoveNumber;
+   Location = Location - 6; 
+  } else
+  /* path found */
+  return 1;
+ }/* closes else if Location div 8 > 0 then */
+}/* closes if Location mod 8 > 1 then 
+
+/* test move 2 left 1 up/down possible */
+/* test move 2 left possible */
+if Location div 8 > 1 then
+{
+ /* test move 1 up possible */
+ if Location mod 8 < 7 then
+ /* 2 right 1 up possible, mark that position and call the function again passing on the new location */
+ {
+  /* new location becomes -8-8+1 */
+  Location = Location - 15;
+  MoveNumber++;
+  Board[Location] = MoveNumber;
+  if knightAllOver(Board,Location,MoveNumber) == 0 then
+  /* did not find a path, need to undo the move */
+  {
+   MoveNumber--;
+   Board[Location] = 0;
+   Location = Location + 15;
+  } else
+  /* path found */
+  return 1;
+ }/* closes if Location mod 8 < 7 then */
+ /* test move 1 down is possible */
+ else if Location mod 8 > 0
+ /* 2 right 1 down is possible */
+ {
+  /* new location becomes -8-8-1 */
+  Location = Location - 17;
+  MoveNumber++;
+  Board[Location] = MoveNumber;
+  if knightAllOver(Board,Location,MoveNumber) == 0 then
+  /* did not find a path, need to undo the move */
+  {
+   MoveNumber--;
+   Board[Location] = MoveNumber;
+   Location = Location + 17;
+  } else
+  /* path found */
+  return 1;
+ } /* closes else if Location mod 8 > 0 */
+}/* closes if Location div 8 > 1 then */
+
+function displayBoard(array Board)
+{
+/* easiest implementation would be to start from row a0, array[1], and display 8 numbers for each row. */
+for new int i = 1 to 8 do
+/* repetition for rows */
+{
+ for new int j = 1 to 8 do
+ /* repetition for columns */
+ {
+  cout << Board[i*j];
+ }
+ coutln; /* print out a newline character for next row */
+}
