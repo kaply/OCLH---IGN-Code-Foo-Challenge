@@ -1,5 +1,8 @@
 1) How many pennies could you put on the Golden Gate Bridge without any of them overlapping? For this question, please write out each step in your thought process.
 
+Basic premise: The placement of the penny will be flat on a surface instead of standing vertically. This is on the basis that a vertical standing penny is generally not stable and has a tendency to move. Step A details the basic steps in finding out how many pennies would fit. Further considerations B-E modifies A based upon different conditions. The actual value for how many pennies can be placed on the golden gate bridge without overlapping has too many variables that are not defined such as issues with what surfaces can be used. Suppose the bridge has multiple horizontal surfaces across the same vertical area. Can those extra surfaces be used without the pennies being considered overlapping.
+
+
 A. Basic Calculation (Done)
 A.1. Obtain the diameter of a penny.
 A.2. Obtain the surface dimensions of each of the Golden Gate Bridge horizontal surfaces.

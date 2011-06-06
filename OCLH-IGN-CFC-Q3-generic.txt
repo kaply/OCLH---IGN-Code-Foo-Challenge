@@ -4,7 +4,7 @@ This version is currently written in a generic language similar to c++/java
 */
 
 main()
-/* It should be possible for a knight to start from one position and traverse the entire board without overlapping. This program is written to reflect this possibility, the data structures reflect this useage as well
+/* It should be possible for a knight to start from one position and traverse the entire board without overlapping. This program is written to reflect this possibility, the data structures reflect this useage as well. I remember doing this project in Turbo Pascal back in 1994?
 
 initialize an array of 1x64 integers /* each will hold the move number for the knight and will correspond to the board location with a1 being position 1 and b1 being position 9, etc*/ : Board;
 initialize an integer /* this will hold the current location*/ : Location;
@@ -203,7 +203,7 @@ if Location div 8 > 1 then
 
 function displayBoard(array Board)
 {
-/* easiest implementation would be to start from row a0, array[1], and display 8 numbers for each row. */
+/* easiest implementation would be to start from row a0, array[1], and display 8 numbers for each row. Outputs for this function needs to be checked for syntax and formatting */
 for new int i = 1 to 8 do
 /* repetition for rows */
 {
